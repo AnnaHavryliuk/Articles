@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AppDelegate.h
 //  Articles
 //
 //  Created by Admin on 12.03.15.
@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArticlesListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ATLAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+
 
 @end
 

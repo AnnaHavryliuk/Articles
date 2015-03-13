@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Anna Havrylyuk. All rights reserved.
 //
 
-#import "ArticlesListViewController.h"
-#import "ArticleTableViewCell.h"
+#import "ATLArticlesListViewController.h"
+#import "ATLArticleTableViewCell.h"
 
-@interface ArticlesListViewController ()
+@interface ATLArticlesListViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *categoriesControl;
 - (IBAction)changeSelectedCategory:(UISegmentedControl *)sender;
 
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation ArticlesListViewController
+@implementation ATLArticlesListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +29,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ArticleTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"Article"];
+    ATLArticleTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"Article"];
     return cell;
 }
 

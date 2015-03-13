@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		845AF4B61AB23D7400C34AFB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845AF4B41AB23D7400C34AFB /* LaunchScreen.xib */; };
+		845AF4B91AB23EB800C34AFB /* ATLArticleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF4B81AB23EB800C34AFB /* ATLArticleDetailsViewController.m */; };
+		845AF4BC1AB23F2E00C34AFB /* ATLArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF4BB1AB23F2E00C34AFB /* ATLArticle.m */; };
+		845AF4BF1AB23FC500C34AFB /* ATLCategoryOfArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF4BE1AB23FC500C34AFB /* ATLCategoryOfArticles.m */; };
+		845AF4C21AB2401900C34AFB /* ATLReceivedArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF4C11AB2401900C34AFB /* ATLReceivedArticles.m */; };
 		849005421AB1C6C0002C0E1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005411AB1C6C0002C0E1E /* main.m */; };
-		849005451AB1C6C0002C0E1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005441AB1C6C0002C0E1E /* AppDelegate.m */; };
-		849005481AB1C6C0002C0E1E /* ArticlesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005471AB1C6C0002C0E1E /* ArticlesListViewController.m */; };
+		849005451AB1C6C0002C0E1E /* ATLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005441AB1C6C0002C0E1E /* ATLAppDelegate.m */; };
+		849005481AB1C6C0002C0E1E /* ATLArticlesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005471AB1C6C0002C0E1E /* ATLArticlesListViewController.m */; };
 		8490054B1AB1C6C0002C0E1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849005491AB1C6C0002C0E1E /* Main.storyboard */; };
 		8490054D1AB1C6C0002C0E1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8490054C1AB1C6C0002C0E1E /* Images.xcassets */; };
 		8490055C1AB1C6C1002C0E1E /* ArticlesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490055B1AB1C6C1002C0E1E /* ArticlesTests.m */; };
-		849005691AB1E6A4002C0E1E /* ArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005681AB1E6A4002C0E1E /* ArticleTableViewCell.m */; };
+		849005691AB1E6A4002C0E1E /* ATLArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849005681AB1E6A4002C0E1E /* ATLArticleTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,20 +32,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		845AF4B51AB23D7400C34AFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		845AF4B71AB23EB800C34AFB /* ATLArticleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLArticleDetailsViewController.h; sourceTree = "<group>"; };
+		845AF4B81AB23EB800C34AFB /* ATLArticleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLArticleDetailsViewController.m; sourceTree = "<group>"; };
+		845AF4BA1AB23F2E00C34AFB /* ATLArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLArticle.h; sourceTree = "<group>"; };
+		845AF4BB1AB23F2E00C34AFB /* ATLArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLArticle.m; sourceTree = "<group>"; };
+		845AF4BD1AB23FC500C34AFB /* ATLCategoryOfArticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLCategoryOfArticles.h; sourceTree = "<group>"; };
+		845AF4BE1AB23FC500C34AFB /* ATLCategoryOfArticles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLCategoryOfArticles.m; sourceTree = "<group>"; };
+		845AF4C01AB2401900C34AFB /* ATLReceivedArticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLReceivedArticles.h; sourceTree = "<group>"; };
+		845AF4C11AB2401900C34AFB /* ATLReceivedArticles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLReceivedArticles.m; sourceTree = "<group>"; };
 		8490053C1AB1C6C0002C0E1E /* Articles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Articles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849005401AB1C6C0002C0E1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849005411AB1C6C0002C0E1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		849005431AB1C6C0002C0E1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		849005441AB1C6C0002C0E1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		849005461AB1C6C0002C0E1E /* ArticlesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticlesListViewController.h; sourceTree = "<group>"; };
-		849005471AB1C6C0002C0E1E /* ArticlesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticlesListViewController.m; sourceTree = "<group>"; };
+		849005431AB1C6C0002C0E1E /* ATLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLAppDelegate.h; sourceTree = "<group>"; };
+		849005441AB1C6C0002C0E1E /* ATLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLAppDelegate.m; sourceTree = "<group>"; };
+		849005461AB1C6C0002C0E1E /* ATLArticlesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLArticlesListViewController.h; sourceTree = "<group>"; };
+		849005471AB1C6C0002C0E1E /* ATLArticlesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLArticlesListViewController.m; sourceTree = "<group>"; };
 		8490054A1AB1C6C0002C0E1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8490054C1AB1C6C0002C0E1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		849005551AB1C6C0002C0E1E /* ArticlesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArticlesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8490055A1AB1C6C1002C0E1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8490055B1AB1C6C1002C0E1E /* ArticlesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticlesTests.m; sourceTree = "<group>"; };
-		849005671AB1E6A4002C0E1E /* ArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTableViewCell.h; sourceTree = "<group>"; };
-		849005681AB1E6A4002C0E1E /* ArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableViewCell.m; sourceTree = "<group>"; };
+		849005671AB1E6A4002C0E1E /* ATLArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLArticleTableViewCell.h; sourceTree = "<group>"; };
+		849005681AB1E6A4002C0E1E /* ATLArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLArticleTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,13 +96,22 @@
 		8490053E1AB1C6C0002C0E1E /* Articles */ = {
 			isa = PBXGroup;
 			children = (
-				849005431AB1C6C0002C0E1E /* AppDelegate.h */,
-				849005441AB1C6C0002C0E1E /* AppDelegate.m */,
-				849005461AB1C6C0002C0E1E /* ArticlesListViewController.h */,
-				849005471AB1C6C0002C0E1E /* ArticlesListViewController.m */,
-				849005671AB1E6A4002C0E1E /* ArticleTableViewCell.h */,
-				849005681AB1E6A4002C0E1E /* ArticleTableViewCell.m */,
+				845AF4BA1AB23F2E00C34AFB /* ATLArticle.h */,
+				845AF4BB1AB23F2E00C34AFB /* ATLArticle.m */,
+				845AF4BD1AB23FC500C34AFB /* ATLCategoryOfArticles.h */,
+				845AF4BE1AB23FC500C34AFB /* ATLCategoryOfArticles.m */,
+				845AF4C01AB2401900C34AFB /* ATLReceivedArticles.h */,
+				845AF4C11AB2401900C34AFB /* ATLReceivedArticles.m */,
+				849005431AB1C6C0002C0E1E /* ATLAppDelegate.h */,
+				849005441AB1C6C0002C0E1E /* ATLAppDelegate.m */,
+				849005461AB1C6C0002C0E1E /* ATLArticlesListViewController.h */,
+				849005471AB1C6C0002C0E1E /* ATLArticlesListViewController.m */,
+				849005671AB1E6A4002C0E1E /* ATLArticleTableViewCell.h */,
+				849005681AB1E6A4002C0E1E /* ATLArticleTableViewCell.m */,
+				845AF4B71AB23EB800C34AFB /* ATLArticleDetailsViewController.h */,
+				845AF4B81AB23EB800C34AFB /* ATLArticleDetailsViewController.m */,
 				849005491AB1C6C0002C0E1E /* Main.storyboard */,
+				845AF4B41AB23D7400C34AFB /* LaunchScreen.xib */,
 				8490054C1AB1C6C0002C0E1E /* Images.xcassets */,
 				8490053F1AB1C6C0002C0E1E /* Supporting Files */,
 			);
@@ -165,6 +188,7 @@
 		849005341AB1C6C0002C0E1E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ATL;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Anna Havrylyuk";
 				TargetAttributes = {
@@ -202,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8490054B1AB1C6C0002C0E1E /* Main.storyboard in Resources */,
+				845AF4B61AB23D7400C34AFB /* LaunchScreen.xib in Resources */,
 				8490054D1AB1C6C0002C0E1E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,10 +245,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849005691AB1E6A4002C0E1E /* ArticleTableViewCell.m in Sources */,
-				849005481AB1C6C0002C0E1E /* ArticlesListViewController.m in Sources */,
-				849005451AB1C6C0002C0E1E /* AppDelegate.m in Sources */,
+				845AF4BC1AB23F2E00C34AFB /* ATLArticle.m in Sources */,
+				845AF4BF1AB23FC500C34AFB /* ATLCategoryOfArticles.m in Sources */,
+				849005691AB1E6A4002C0E1E /* ATLArticleTableViewCell.m in Sources */,
+				849005481AB1C6C0002C0E1E /* ATLArticlesListViewController.m in Sources */,
+				849005451AB1C6C0002C0E1E /* ATLAppDelegate.m in Sources */,
 				849005421AB1C6C0002C0E1E /* main.m in Sources */,
+				845AF4B91AB23EB800C34AFB /* ATLArticleDetailsViewController.m in Sources */,
+				845AF4C21AB2401900C34AFB /* ATLReceivedArticles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +275,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		845AF4B41AB23D7400C34AFB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				845AF4B51AB23D7400C34AFB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 		849005491AB1C6C0002C0E1E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -406,6 +443,7 @@
 				849005611AB1C6C1002C0E1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849005621AB1C6C1002C0E1E /* Build configuration list for PBXNativeTarget "ArticlesTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +452,7 @@
 				849005641AB1C6C1002C0E1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Anna Havrylyuk. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ATLAppDelegate.h"
 
-@interface AppDelegate ()
+@interface ATLAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation ATLAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
