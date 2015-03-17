@@ -7,32 +7,104 @@
 //
 
 #import "ATLArticlesListViewController.h"
+#import "ATLArticle.h"
+#import "ATLArticleCategory.h"
 #import "ATLArticleTableViewCell.h"
 
 @interface ATLArticlesListViewController ()
-@property (weak, nonatomic) IBOutlet UISegmentedControl *categoriesControl;
-- (IBAction)changeSelectedCategory:(UISegmentedControl *)sender;
 
+@property (strong, nonatomic) ATLDatabaseManager *articlesManager;
+@property (strong, nonatomic) NSArray *filteredArticles;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mainCategoriesControl;
+@property (weak, nonatomic) IBOutlet UILabel *subcategoryName;
+@property (weak, nonatomic) IBOutlet UITableView *tableOfArticles;
 @property (weak, nonatomic) IBOutlet UIPageControl *subcategoriesControl;
+
+- (IBAction)changeSelectedMainCategory:(UISegmentedControl *)sender;
+- (IBAction)goToNextSubcategory:(UISwipeGestureRecognizer *)sender;
+- (IBAction)goToPreviousSubcategory:(UISwipeGestureRecognizer *)sender;
 
 @end
 
 @implementation ATLArticlesListViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-
+    self.articlesManager = [ATLDatabaseManager sharedManager];
+    self.articlesManager.delegate = self;
+    [self.articlesManager receiveAllArticlesWithcompletionHandler:^(BOOL success) {
+        self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
+        self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
+        self.subcategoriesControl.numberOfPages = [self.articlesManager.subcategories count];
+        [self.tableOfArticles reloadData];
+        if (!success)
+        {
+            
+        }
+    }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+- (void)reloadArticlesTableData
+{
+    [self.tableOfArticles reloadData];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.filteredArticles count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ATLArticleTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"Article"];
+    ATLArticle *article = [self.filteredArticles objectAtIndex:indexPath.row];
+    cell.articleTitle.text = article.title;
+    cell.articleSubtitle.text = article.subtitle;
+    cell.articleImage.image = [UIImage imageWithData:article.image];
     return cell;
 }
 
-- (IBAction)changeSelectedCategory:(UISegmentedControl *)sender {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ATLArticle *selectedArticle = [self.filteredArticles objectAtIndex:indexPath.row];
+    self.articlesManager.selectedArticle = selectedArticle;
 }
+
+- (IBAction)changeSelectedMainCategory:(UISegmentedControl *)sender
+{
+    [self.articlesManager changeSubcategories:sender.selectedSegmentIndex];
+    self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
+    self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
+    self.subcategoriesControl.numberOfPages = [self.articlesManager.subcategories count];
+    self.subcategoriesControl.currentPage = 0;
+    [self.tableOfArticles reloadData];
+}
+
+- (IBAction)goToNextSubcategory:(UISwipeGestureRecognizer *)sender
+{
+    if ([self.subcategoriesControl currentPage] < [self.subcategoriesControl numberOfPages]-1)
+    {
+        ++self.subcategoriesControl.currentPage;
+        NSInteger selectedPage = [self.subcategoriesControl currentPage];
+        self.articlesManager.selectedSubcategory = [self.articlesManager.subcategories objectAtIndex:selectedPage];
+        self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
+        self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
+        [self.tableOfArticles reloadData];
+    }
+}
+
+- (IBAction)goToPreviousSubcategory:(UISwipeGestureRecognizer *)sender
+{
+    if (self.subcategoriesControl.currentPage > 0)
+    {
+        --self.subcategoriesControl.currentPage;
+        NSInteger selectedPage = [self.subcategoriesControl currentPage];
+        self.articlesManager.selectedSubcategory = [self.articlesManager.subcategories objectAtIndex:selectedPage];
+        self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
+        self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
+        [self.tableOfArticles reloadData];
+    }
+}
+
 @end

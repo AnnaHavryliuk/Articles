@@ -26,13 +26,13 @@
                                     <segment title="Culture"/>
                                 </segments>
                                 <connections>
-                                    <action selector="changeSelectedCategory:" destination="vXZ-lx-hvc" eventType="valueChanged" id="6Cs-c6-Bas"/>
+                                    <action selector="changeSelectedMainCategory:" destination="vXZ-lx-hvc" eventType="valueChanged" id="gy6-cj-SVn"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subcategory" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggg-jk-6D4">
                                 <rect key="frame" x="0.0" y="93" width="600" height="21"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -40,25 +40,25 @@
                                 <rect key="frame" x="0.0" y="114" width="600" height="449"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Article" rowHeight="100" id="PAt-EY-0Mo" customClass="ATLArticleTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Article" rowHeight="100" id="PAt-EY-0Mo" customClass="ATLArticleTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PAt-EY-0Mo" id="MVC-rn-mYV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6L-s3-O3z">
                                                     <rect key="frame" x="108" y="2" width="215" height="40"/>
-                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46d-zg-fhe">
-                                                    <rect key="frame" x="108" y="41" width="215" height="60"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mEt-JZ-O16">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="99"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46d-zg-fhe">
+                                                    <rect key="frame" x="108" y="39" width="215" height="60"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -74,14 +74,15 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="Vu1-7v-29A"/>
                                 </connections>
                             </tableView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="dAo-HF-Qu4">
+                            <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="dAo-HF-Qu4">
                                 <rect key="frame" x="0.0" y="563" width="600" height="37"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" red="0.1402145071" green="0.46398236079999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="8cE-me-EZJ" secondAttribute="trailing" constant="-16" id="4UQ-fi-tJU"/>
                             <constraint firstItem="dAo-HF-Qu4" firstAttribute="top" secondItem="8cE-me-EZJ" secondAttribute="bottom" id="4Yy-fU-rBM"/>
@@ -100,16 +101,32 @@
                             <constraint firstItem="YCX-Re-sNs" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="smR-uD-McD"/>
                             <constraint firstItem="8cE-me-EZJ" firstAttribute="top" secondItem="Ggg-jk-6D4" secondAttribute="bottom" id="tBj-yM-too"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Z59-JM-VvQ" appends="YES" id="z0w-eL-oGe"/>
+                            <outletCollection property="gestureRecognizers" destination="DV1-UF-EJR" appends="YES" id="Wah-I1-dBy"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="A5N-iA-9aH"/>
                     <connections>
-                        <outlet property="categoriesControl" destination="YCX-Re-sNs" id="hbL-0v-Vqz"/>
+                        <outlet property="mainCategoriesControl" destination="YCX-Re-sNs" id="soO-9z-nit"/>
                         <outlet property="subcategoriesControl" destination="dAo-HF-Qu4" id="8Ch-gI-pyP"/>
+                        <outlet property="subcategoryName" destination="Ggg-jk-6D4" id="NWM-GY-HPy"/>
+                        <outlet property="tableOfArticles" destination="8cE-me-EZJ" id="mwH-zX-dH0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Z59-JM-VvQ">
+                    <connections>
+                        <action selector="goToPreviousSubcategory:" destination="vXZ-lx-hvc" id="LTb-5x-6mg"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="DV1-UF-EJR">
+                    <connections>
+                        <action selector="goToNextSubcategory:" destination="vXZ-lx-hvc" id="fTD-rr-FwK"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1068" y="360"/>
+            <point key="canvasLocation" x="1000" y="361"/>
         </scene>
         <!--Article Details View Controller-->
         <scene sceneID="Fh4-jI-x5F">
@@ -123,55 +140,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NzU-u6-0yx">
-                                <rect key="frame" x="0.0" y="64" width="150" height="150"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT3-yQ-xdx">
-                                <rect key="frame" x="153" y="64" width="440" height="21"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euV-fq-OnZ">
-                                <rect key="frame" x="153" y="101" width="440" height="16"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nq6-Qj-deY">
-                                <rect key="frame" x="153" y="131" width="440" height="16"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vga-Lf-DcV">
-                                <rect key="frame" x="0.0" y="214" width="593" height="388"/>
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLR-40-vgZ">
+                                <rect key="frame" x="8" y="411" width="584" height="181"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="fRh-qc-FNb">
+                                <rect key="frame" x="8" y="317" width="584" height="75"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaD-m7-TGq">
-                                <rect key="frame" x="153" y="163" width="440" height="16"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="220" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="KLu-wu-wFs">
+                                <rect key="frame" x="0.0" y="64" width="600" height="245"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.1402145071" green="0.46398236079999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TitleAuthorDate" rowHeight="220" id="7Kz-Xk-kad" customClass="ATLArticleTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Kz-Xk-kad" id="kYP-ph-7tL">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czb-3k-uku">
+                                                    <rect key="frame" x="8" y="3" width="584" height="32"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1v-TU-dzk">
+                                                    <rect key="frame" x="8" y="40" width="584" height="16"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KCV-mp-f8s">
+                                                    <rect key="frame" x="8" y="61" width="250" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="articleImage" destination="KCV-mp-f8s" id="Zh6-P9-4oo"/>
+                                            <outlet property="articleSubtitle" destination="m1v-TU-dzk" id="a53-Bk-689"/>
+                                            <outlet property="articleTitle" destination="czb-3k-uku" id="B7C-PG-b1p"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BHB-4k-CFT" id="ar7-fR-l9K"/>
+                                    <outlet property="delegate" destination="BHB-4k-CFT" id="t5F-jK-OTZ"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="uLR-40-vgZ" firstAttribute="top" secondItem="fRh-qc-FNb" secondAttribute="bottom" constant="19" id="1rp-J5-KkZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fRh-qc-FNb" secondAttribute="trailing" constant="-8" id="5R5-FM-zOh"/>
+                            <constraint firstItem="vKW-0Y-PwN" firstAttribute="top" secondItem="uLR-40-vgZ" secondAttribute="bottom" constant="8" id="AIA-Rc-cMB"/>
+                            <constraint firstItem="fRh-qc-FNb" firstAttribute="top" secondItem="KLu-wu-wFs" secondAttribute="bottom" constant="8" id="LIg-ge-QzO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KLu-wu-wFs" secondAttribute="trailing" constant="-16" id="W8k-py-sLy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uLR-40-vgZ" secondAttribute="trailing" constant="-8" id="cUd-oi-dLd"/>
+                            <constraint firstItem="fRh-qc-FNb" firstAttribute="leading" secondItem="Fha-rK-Qi1" secondAttribute="leadingMargin" constant="-8" id="j6F-R9-ZyD"/>
+                            <constraint firstItem="KLu-wu-wFs" firstAttribute="top" secondItem="Lol-Jk-tc1" secondAttribute="bottom" id="lBd-6Q-PRb"/>
+                            <constraint firstItem="uLR-40-vgZ" firstAttribute="leading" secondItem="Fha-rK-Qi1" secondAttribute="leadingMargin" constant="-8" id="pBz-72-hRX"/>
+                            <constraint firstItem="KLu-wu-wFs" firstAttribute="leading" secondItem="Fha-rK-Qi1" secondAttribute="leadingMargin" constant="-16" id="v23-Yy-gtM"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Iwh-Rl-00T" appends="YES" id="Kb3-nG-euE"/>
+                            <outletCollection property="gestureRecognizers" destination="ba5-a7-vS5" appends="YES" id="uXy-eu-zte"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="articleAuthor" destination="euV-fq-OnZ" id="nGg-Dy-E1d"/>
-                        <outlet property="articleDate" destination="nq6-Qj-deY" id="Lcs-JQ-JZg"/>
-                        <outlet property="articleImage" destination="NzU-u6-0yx" id="Dh5-NR-I5r"/>
-                        <outlet property="articleSubtitle" destination="oaD-m7-TGq" id="8Ij-tN-0Qo"/>
-                        <outlet property="articleText" destination="vga-Lf-DcV" id="NK6-zV-l1k"/>
-                        <outlet property="articleTitle" destination="MT3-yQ-xdx" id="1y4-X4-OYq"/>
+                        <outlet property="articleContent" destination="uLR-40-vgZ" id="l6M-xw-230"/>
+                        <outlet property="articleInfo" destination="KLu-wu-wFs" id="tAI-ji-iIy"/>
+                        <outlet property="articleSubtitle" destination="fRh-qc-FNb" id="Fhp-Tw-Xu7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCE-zH-p6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Iwh-Rl-00T">
+                    <connections>
+                        <action selector="goToPreviousArticle:" destination="BHB-4k-CFT" id="4N6-OM-umj"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="ba5-a7-vS5">
+                    <connections>
+                        <action selector="goToNextArticle:" destination="BHB-4k-CFT" id="IMx-f3-nEy"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1734" y="360"/>
+            <point key="canvasLocation" x="1717" y="361"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nbw-YU-f6R">
