@@ -67,13 +67,12 @@ static ATLDatabaseManager *shared = nil;
                     }];
                 }
             }
-            self.selectedSubcategory = [self.subcategories objectAtIndex:0];
-        }
-        else
+        } else
         {
             [self changeSubcategories:0];
             handler(NO);
         }
+        self.selectedSubcategory = [self.subcategories objectAtIndex:0];
     }];
 }
 
@@ -142,7 +141,7 @@ static ATLDatabaseManager *shared = nil;
     NSNumber *minimumRanking = [NSNumber numberWithInteger:(index+1)*100];
     NSNumber *maximumRanking = [NSNumber numberWithInteger:(index+2)*100];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(ranking >= %@) && (ranking < %@)", minimumRanking, maximumRanking];
-    _subcategories = [NSMutableArray arrayWithArray:[ATLArticleCategory fetchCategoriesFromDatabase:predicate]];
+    self.subcategories = [NSMutableArray arrayWithArray:[ATLArticleCategory fetchCategoriesFromDatabase:predicate]];
     self.selectedSubcategory = [self.subcategories objectAtIndex:0];
 }
 

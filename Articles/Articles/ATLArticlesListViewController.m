@@ -34,15 +34,17 @@
     self.articlesManager = [ATLDatabaseManager sharedManager];
     self.articlesManager.delegate = self;
     [self.articlesManager receiveAllArticlesWithcompletionHandler:^(BOOL success) {
-        self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
-        self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
-        self.subcategoriesControl.numberOfPages = [self.articlesManager.subcategories count];
+        self.filteredArticles = self.articlesManager.selectedSubcategory.articles.allObjects;
+        self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
+        self.subcategoriesControl.numberOfPages = self.articlesManager.subcategories.count;
         [self.tableOfArticles reloadData];
         if (!success)
         {
             
         }
     }];
+    [self.tableOfArticles setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableOfArticles setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)reloadArticlesTableData
@@ -62,6 +64,8 @@
     cell.articleTitle.text = article.title;
     cell.articleSubtitle.text = article.subtitle;
     cell.articleImage.image = [UIImage imageWithData:article.image];
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+    [cell setLayoutMargins:UIEdgeInsetsZero];
     return cell;
 }
 
@@ -74,22 +78,22 @@
 - (IBAction)changeSelectedMainCategory:(UISegmentedControl *)sender
 {
     [self.articlesManager changeSubcategories:sender.selectedSegmentIndex];
-    self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
-    self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
-    self.subcategoriesControl.numberOfPages = [self.articlesManager.subcategories count];
+    self.filteredArticles = self.articlesManager.selectedSubcategory.articles.allObjects;
+    self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
+    self.subcategoriesControl.numberOfPages = self.articlesManager.subcategories.count;
     self.subcategoriesControl.currentPage = 0;
     [self.tableOfArticles reloadData];
 }
 
 - (IBAction)goToNextSubcategory:(UISwipeGestureRecognizer *)sender
 {
-    if ([self.subcategoriesControl currentPage] < [self.subcategoriesControl numberOfPages]-1)
+    if (self.subcategoriesControl.currentPage < self.subcategoriesControl.numberOfPages-1)
     {
         ++self.subcategoriesControl.currentPage;
-        NSInteger selectedPage = [self.subcategoriesControl currentPage];
+        NSInteger selectedPage = self.subcategoriesControl.currentPage;
         self.articlesManager.selectedSubcategory = [self.articlesManager.subcategories objectAtIndex:selectedPage];
-        self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
-        self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
+        self.filteredArticles = self.articlesManager.selectedSubcategory.articles.allObjects;
+        self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
         [self.tableOfArticles reloadData];
     }
 }
@@ -99,10 +103,10 @@
     if (self.subcategoriesControl.currentPage > 0)
     {
         --self.subcategoriesControl.currentPage;
-        NSInteger selectedPage = [self.subcategoriesControl currentPage];
+        NSInteger selectedPage = self.subcategoriesControl.currentPage;
         self.articlesManager.selectedSubcategory = [self.articlesManager.subcategories objectAtIndex:selectedPage];
-        self.filteredArticles = [[self.articlesManager.selectedSubcategory articles] allObjects];
-        self.subcategoryName.text = [self.articlesManager.selectedSubcategory name];
+        self.filteredArticles = self.articlesManager.selectedSubcategory.articles.allObjects;
+        self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
         [self.tableOfArticles reloadData];
     }
 }

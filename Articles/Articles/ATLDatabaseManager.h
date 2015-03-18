@@ -19,7 +19,7 @@
 
 @interface ATLDatabaseManager : NSObject
 
-@property (strong,readonly, nonatomic) NSMutableArray *subcategories;
+@property (strong, nonatomic) NSMutableArray *subcategories;
 @property (strong, nonatomic) ATLArticleCategory *selectedSubcategory;
 @property (strong, nonatomic) ATLArticle *selectedArticle;
 @property (weak, nonatomic) id<ReloadArticlesDataDelegate>delegate;

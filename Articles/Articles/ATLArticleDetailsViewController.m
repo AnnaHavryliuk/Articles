@@ -15,7 +15,12 @@
 @interface ATLArticleDetailsViewController ()
 
 @property (strong, nonatomic) ATLDatabaseManager *articlesManager;
-@property (weak, nonatomic) IBOutlet UITableView *articleInfo;
+@property (strong, nonatomic) NSArray *articles;
+@property (nonatomic) NSInteger userPosition;
+@property (weak, nonatomic) IBOutlet UILabel *articleTitle;
+@property (weak, nonatomic) IBOutlet UILabel *articleDateAndAuthor;
+@property (weak, nonatomic) IBOutlet UIImageView *articleImage;
+@property (weak, nonatomic) IBOutlet UILabel *subcategoryName;
 @property (weak, nonatomic) IBOutlet UITextView *articleSubtitle;
 @property (weak, nonatomic) IBOutlet UIWebView *articleContent;
 
@@ -27,57 +32,48 @@
 {
     [super viewDidLoad];
     self.articlesManager = [ATLDatabaseManager sharedManager];
-    self.articleSubtitle.text = [self.articlesManager.selectedArticle subtitle];
-    [self.articleContent loadHTMLString:[self.articlesManager.selectedArticle content] baseURL:nil];
+    self.articles = self.articlesManager.selectedSubcategory.articles.allObjects;
+    self.userPosition = [self.articles indexOfObject:self.articlesManager.selectedArticle];
+    self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
+    [self displaySelectedArticle];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void) displaySelectedArticle
 {
-    return 1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ATLArticle *article = self.articlesManager.selectedArticle;
-    ATLArticleTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"TitleAuthorDate"];
-    cell.articleTitle.text = article.title;
+    self.articleTitle.text = self.articlesManager.selectedArticle.title;
     NSDateFormatter *formatterOfDate = [[NSDateFormatter alloc] init];
     formatterOfDate.dateFormat = @"dd.MM.yyyy";
-    NSMutableString *text = [NSMutableString stringWithString:[formatterOfDate stringFromDate:article.date]];
-    if(article.author)
+    NSString *date = [formatterOfDate stringFromDate:self.articlesManager.selectedArticle.date];
+    NSMutableString *text = [NSMutableString stringWithString:date];
+    if(self.articlesManager.selectedArticle.author)
     {
-        [text appendFormat:@" %@", article.author];
+        [text appendFormat:@" %@", self.articlesManager.selectedArticle.author];
     }
-    cell.articleSubtitle.text = text;
-    cell.articleImage.image = [UIImage imageWithData:article.image];
-    return cell;
+    self.articleDateAndAuthor.text = text;
+    self.articleImage.image = [UIImage imageWithData:self.articlesManager.selectedArticle.image];
+    self.articleSubtitle.text = self.articlesManager.selectedArticle.subtitle;
+    [self.articleContent loadHTMLString:self.articlesManager.selectedArticle.content baseURL:nil];
+
 }
 
 - (IBAction)goToNextArticle:(UISwipeGestureRecognizer *)sender
 {
-//    if ([self.articlesControl currentPage] < [self.articlesControl numberOfPages]-1)
-//    {
-//        ++self.articlesControl.currentPage;
-//        NSInteger selectedPage = [self.articlesControl currentPage];
-//        self.articlesManager.selectedArticle = [[[self.articlesManager.selectedSubcategory articles] allObjects] objectAtIndex:selectedPage];
-//        [self.articleInfo reloadData];
-//        self.articleSubtitle.text = [self.articlesManager.selectedArticle subtitle];
-//        [self.articleContent loadHTMLString:[self.articlesManager.selectedArticle content] baseURL:nil];
-//    }
+    if (self.userPosition < self.articles.count-1)
+    {
+        ++self.userPosition;
+        self.articlesManager.selectedArticle = [self.articles objectAtIndex:self.userPosition];
+        [self displaySelectedArticle];
+    }
 }
 
 - (IBAction)goToPreviousArticle:(UISwipeGestureRecognizer *)sender
 {
-//    if (self.articlesControl.currentPage > 0)
-//    {
-//        --self.articlesControl.currentPage;
-//        NSInteger selectedPage = [self.articlesControl currentPage];
-//        self.articlesManager.selectedArticle = [[[self.articlesManager.selectedSubcategory articles] allObjects] objectAtIndex:selectedPage];
-//        [self.articleInfo reloadData];
-//        self.articleSubtitle.text = [self.articlesManager.selectedArticle subtitle];
-//        [self.articleContent loadHTMLString:[self.articlesManager.selectedArticle content] baseURL:nil];
-//    }
+    if (self.userPosition > 0)
+    {
+        --self.userPosition;
+        self.articlesManager.selectedArticle = [self.articles objectAtIndex:self.userPosition];
+        [self displaySelectedArticle];
+    }
 }
-
 
 @end

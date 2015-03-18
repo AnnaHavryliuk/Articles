@@ -8,6 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ATLArticleDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-
+@interface ATLArticleDetailsViewController : UIViewController
 @end
