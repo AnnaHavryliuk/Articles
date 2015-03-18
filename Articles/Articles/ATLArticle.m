@@ -16,6 +16,7 @@
 @dynamic title;
 @dynamic author;
 @dynamic date;
+@dynamic ranking;
 @dynamic subtitle;
 @dynamic content;
 @dynamic image;
@@ -30,6 +31,7 @@
     newArticle.identifier = [data objectForKey:@"id"];
     newArticle.title = [data objectForKey:@"title"];
     NSTimeInterval timeInterval = [[data objectForKey:@"date"] doubleValue];
+    newArticle.ranking =[data objectForKey:@"ranking"];
     newArticle.date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     newArticle.subtitle = [data objectForKey:@"subtitle"];
     newArticle.category = category;

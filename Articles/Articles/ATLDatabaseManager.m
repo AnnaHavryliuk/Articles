@@ -9,10 +9,13 @@
 #import "ATLDatabaseManager.h"
 #import "ATLArticle.h"
 #import "ATLArticleCategory.h"
+#import "ATLAppDelegate.h"
 
 static ATLDatabaseManager *shared = nil;
 
 @interface ATLDatabaseManager ()
+
+@property (readonly, strong, nonatomic) NSManagedObjectContext *context;
 
 @end
 
@@ -37,14 +40,41 @@ static ATLDatabaseManager *shared = nil;
     if (self = [super init])
     {
         _subcategories = [[NSMutableArray alloc] init];
+        ATLAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _context = [appDelegate managedObjectContext];
     }
     return self;
 }
 
+- (void)changeSubcategories:(NSInteger)index
+{
+    NSNumber *minimumRanking = [NSNumber numberWithInteger:(index+1)*100];
+    NSNumber *maximumRanking = [NSNumber numberWithInteger:(index+2)*100];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(ranking >= %@) && (ranking < %@)", minimumRanking, maximumRanking];
+    NSArray *fetchedResults = [ATLArticleCategory fetchCategoriesFromDatabase:predicate];
+    id mySort = ^(ATLArticle *object1, ATLArticle *object2){
+        NSNumber *first = object1.ranking;
+        NSNumber *second = object2.ranking;
+        if ([first integerValue] > [second integerValue])
+        {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if ([first integerValue] < [second integerValue])
+        {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    };
+    self.subcategories = [[fetchedResults sortedArrayUsingComparator:mySort] mutableCopy];
+    self.selectedSubcategory = [self.subcategories objectAtIndex:0];
+}
+
+#pragma mark - Methods of receiving all articles from server and saving in DB
+
 - (void)receiveAllArticlesWithcompletionHandler:(void(^)(BOOL))handler
 {
     NSURL *categoriesUrl = [NSURL URLWithString:@"http://figaro.service.yagasp.com/article/categories"];
-    NSURLRequest *categoriesRequest = [NSURLRequest requestWithURL:categoriesUrl];
+    NSURLRequest *categoriesRequest = [NSURLRequest requestWithURL:categoriesUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:2.0];
     [NSURLConnection sendAsynchronousRequest:categoriesRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data.length > 0 && !connectionError)
         {
@@ -80,7 +110,7 @@ static ATLDatabaseManager *shared = nil;
 {
     NSString *stringForUrl = [NSString stringWithFormat:@"http://figaro.service.yagasp.com/article/header/%@", category.identifier];
     NSURL *articlesUrl = [NSURL URLWithString:stringForUrl];
-    NSURLRequest *articlesRequest = [NSURLRequest requestWithURL:articlesUrl];
+    NSURLRequest *articlesRequest = [NSURLRequest requestWithURL:articlesUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:2.0];
     [NSURLConnection sendAsynchronousRequest:articlesRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data.length > 0 && !connectionError)
         {
@@ -100,7 +130,7 @@ static ATLDatabaseManager *shared = nil;
 {
     NSString *stringForUrl = [NSString stringWithFormat:@"http://figaro.service.yagasp.com/article/%@", article.identifier];
     NSURL *detailsUrl = [NSURL URLWithString:stringForUrl];
-    NSURLRequest *detailsRequest = [NSURLRequest requestWithURL:detailsUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    NSURLRequest *detailsRequest = [NSURLRequest requestWithURL:detailsUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:100.0];
     [NSURLConnection sendAsynchronousRequest:detailsRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data.length > 0 && !connectionError)
         {
@@ -113,11 +143,19 @@ static ATLDatabaseManager *shared = nil;
             NSRange videoRange = [content rangeOfString:@"<video md5=\"" options:NSLiteralSearch];
             while (videoRange.location != NSNotFound)
             {
-                videoRange.length += 37;
+                videoRange.length += 36;
                 [content deleteCharactersInRange:videoRange];
                 videoRange = [content rangeOfString:@"<video md5=\"" options:NSLiteralSearch];
             }
+            videoRange = [content rangeOfString:@"<br />" options:NSLiteralSearch];
+            while (videoRange.location != NSNotFound)
+            {
+                [content deleteCharactersInRange:videoRange];
+                videoRange = [content rangeOfString:@"<br />" options:NSLiteralSearch];
+            }
             article.content = content;
+            NSError *error;
+            [self.context save:&error];
         }
     }];
 }
@@ -126,23 +164,16 @@ static ATLDatabaseManager *shared = nil;
 {
     NSString *stringForUrl = [url stringByReplacingOccurrencesOfString:@"%dx%d" withString:@"300x300"];
     NSURL *imageUrl = [NSURL URLWithString:stringForUrl];
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0];
     [NSURLConnection sendAsynchronousRequest:imageRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data.length > 0 && !connectionError)
         {
             article.image = data;
             [self.delegate reloadArticlesTableData];
+            NSError *error;
+            [self.context save:&error];
         }
     }];
-}
-
-- (void) changeSubcategories:(NSInteger)index
-{
-    NSNumber *minimumRanking = [NSNumber numberWithInteger:(index+1)*100];
-    NSNumber *maximumRanking = [NSNumber numberWithInteger:(index+2)*100];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(ranking >= %@) && (ranking < %@)", minimumRanking, maximumRanking];
-    self.subcategories = [NSMutableArray arrayWithArray:[ATLArticleCategory fetchCategoriesFromDatabase:predicate]];
-    self.selectedSubcategory = [self.subcategories objectAtIndex:0];
 }
 
 @end

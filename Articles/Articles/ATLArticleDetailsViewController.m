@@ -35,26 +35,32 @@
     self.articles = self.articlesManager.selectedSubcategory.articles.allObjects;
     self.userPosition = [self.articles indexOfObject:self.articlesManager.selectedArticle];
     self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
+    self.articleContent.dataDetectorTypes = UIDataDetectorTypeNone;
     [self displaySelectedArticle];
 }
 
-- (void) displaySelectedArticle
-{
-    self.articleTitle.text = self.articlesManager.selectedArticle.title;
-    NSDateFormatter *formatterOfDate = [[NSDateFormatter alloc] init];
-    formatterOfDate.dateFormat = @"dd.MM.yyyy";
-    NSString *date = [formatterOfDate stringFromDate:self.articlesManager.selectedArticle.date];
-    NSMutableString *text = [NSMutableString stringWithString:date];
-    if(self.articlesManager.selectedArticle.author)
-    {
-        [text appendFormat:@" %@", self.articlesManager.selectedArticle.author];
-    }
-    self.articleDateAndAuthor.text = text;
-    self.articleImage.image = [UIImage imageWithData:self.articlesManager.selectedArticle.image];
-    self.articleSubtitle.text = self.articlesManager.selectedArticle.subtitle;
-    [self.articleContent loadHTMLString:self.articlesManager.selectedArticle.content baseURL:nil];
+#pragma mark - UIWebVIewDelegate methods
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    int fontSize = 100;
+    NSString *jsStringForFontSize = [NSString  stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'", fontSize];
+    [webView stringByEvaluatingJavaScriptFromString:jsStringForFontSize];
+    
 }
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked)
+    {
+        return NO;
+    }
+    
+    return YES;
+    
+}
+
+#pragma mark - Swipe methods
 
 - (IBAction)goToNextArticle:(UISwipeGestureRecognizer *)sender
 {
@@ -74,6 +80,24 @@
         self.articlesManager.selectedArticle = [self.articles objectAtIndex:self.userPosition];
         [self displaySelectedArticle];
     }
+}
+
+- (void) displaySelectedArticle
+{
+    self.articleTitle.text = self.articlesManager.selectedArticle.title;
+    NSDateFormatter *formatterOfDate = [[NSDateFormatter alloc] init];
+    formatterOfDate.dateFormat = @"dd.MM.yyyy";
+    NSString *date = [formatterOfDate stringFromDate:self.articlesManager.selectedArticle.date];
+    NSMutableString *text = [NSMutableString stringWithString:date];
+    if(self.articlesManager.selectedArticle.author)
+    {
+        [text appendFormat:@" %@", self.articlesManager.selectedArticle.author];
+    }
+    self.articleDateAndAuthor.text = text;
+    self.articleImage.image = [UIImage imageWithData:self.articlesManager.selectedArticle.image];
+    self.articleSubtitle.text = self.articlesManager.selectedArticle.subtitle;
+    [self.articleContent loadHTMLString:self.articlesManager.selectedArticle.content baseURL:nil];
+    
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ATLDatabaseManager.h"
 
-@interface ATLArticlesListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ReloadArticlesDataDelegate>
+@interface ATLArticlesListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ATLReloadArticlesDataDelegate>
 
 @end
 

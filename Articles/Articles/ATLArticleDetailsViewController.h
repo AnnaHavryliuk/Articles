@@ -8,5 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ATLArticleDetailsViewController : UIViewController
+@interface ATLArticleDetailsViewController : UIViewController<UIWebViewDelegate>
+
 @end

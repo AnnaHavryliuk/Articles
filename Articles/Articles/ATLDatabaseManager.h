@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ReloadArticlesDataDelegate <NSObject>
+@protocol ATLReloadArticlesDataDelegate <NSObject>
 
 - (void)reloadArticlesTableData;
 
@@ -22,10 +22,10 @@
 @property (strong, nonatomic) NSMutableArray *subcategories;
 @property (strong, nonatomic) ATLArticleCategory *selectedSubcategory;
 @property (strong, nonatomic) ATLArticle *selectedArticle;
-@property (weak, nonatomic) id<ReloadArticlesDataDelegate>delegate;
+@property (weak, nonatomic) id<ATLReloadArticlesDataDelegate>delegate;
 
 + (ATLDatabaseManager *)sharedManager;
 - (void)receiveAllArticlesWithcompletionHandler:(void(^)(BOOL))handler;
-- (void) changeSubcategories:(NSInteger)index;
+- (void)changeSubcategories:(NSInteger)index;
 
 @end

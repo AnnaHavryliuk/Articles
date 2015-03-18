@@ -33,24 +33,25 @@
     [super viewDidLoad];
     self.articlesManager = [ATLDatabaseManager sharedManager];
     self.articlesManager.delegate = self;
+    self.filteredArticles = [[NSArray alloc] init];
     [self.articlesManager receiveAllArticlesWithcompletionHandler:^(BOOL success) {
         self.filteredArticles = self.articlesManager.selectedSubcategory.articles.allObjects;
         self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
         self.subcategoriesControl.numberOfPages = self.articlesManager.subcategories.count;
         [self.tableOfArticles reloadData];
-        if (!success)
-        {
-            
-        }
     }];
     [self.tableOfArticles setSeparatorInset:UIEdgeInsetsZero];
     [self.tableOfArticles setLayoutMargins:UIEdgeInsetsZero];
 }
 
+#pragma mark - ATLReloadArticlesDataDelegate methods
+
 - (void)reloadArticlesTableData
 {
     [self.tableOfArticles reloadData];
 }
+
+#pragma mark - UITableViewDataSource & UITableViewDelegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -75,6 +76,8 @@
     self.articlesManager.selectedArticle = selectedArticle;
 }
 
+#pragma mark - UISegmentedControl: segment value changed method
+
 - (IBAction)changeSelectedMainCategory:(UISegmentedControl *)sender
 {
     [self.articlesManager changeSubcategories:sender.selectedSegmentIndex];
@@ -84,6 +87,8 @@
     self.subcategoriesControl.currentPage = 0;
     [self.tableOfArticles reloadData];
 }
+
+#pragma mark - Swipe methods
 
 - (IBAction)goToNextSubcategory:(UISwipeGestureRecognizer *)sender
 {
