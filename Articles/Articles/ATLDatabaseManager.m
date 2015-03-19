@@ -74,7 +74,7 @@ static ATLDatabaseManager *shared = nil;
 - (void)receiveAllArticlesWithcompletionHandler:(void(^)(BOOL))handler
 {
     NSURL *categoriesUrl = [NSURL URLWithString:@"http://figaro.service.yagasp.com/article/categories"];
-    NSURLRequest *categoriesRequest = [NSURLRequest requestWithURL:categoriesUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:2.0];
+    NSURLRequest *categoriesRequest = [NSURLRequest requestWithURL:categoriesUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:3.0];
     [NSURLConnection sendAsynchronousRequest:categoriesRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data.length > 0 && !connectionError)
         {
@@ -97,12 +97,17 @@ static ATLDatabaseManager *shared = nil;
                     }];
                 }
             }
+            self.selectedSubcategory = [self.subcategories objectAtIndex:0];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         } else
         {
-            [self changeSubcategories:0];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+            {
+                [self changeSubcategories:0];
+            }
             handler(NO);
         }
-        self.selectedSubcategory = [self.subcategories objectAtIndex:0];
     }];
 }
 
@@ -110,7 +115,7 @@ static ATLDatabaseManager *shared = nil;
 {
     NSString *stringForUrl = [NSString stringWithFormat:@"http://figaro.service.yagasp.com/article/header/%@", category.identifier];
     NSURL *articlesUrl = [NSURL URLWithString:stringForUrl];
-    NSURLRequest *articlesRequest = [NSURLRequest requestWithURL:articlesUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:2.0];
+    NSURLRequest *articlesRequest = [NSURLRequest requestWithURL:articlesUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:3.0];
     [NSURLConnection sendAsynchronousRequest:articlesRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data.length > 0 && !connectionError)
         {
@@ -118,8 +123,8 @@ static ATLDatabaseManager *shared = nil;
             for (NSDictionary *receivedArticle in dataFromUrl)
             {
                 ATLArticle *article = [ATLArticle createNewArticle:receivedArticle OfCategory:category];
-                [self receiveImageOfArticle:article ByUrl:[[receivedArticle objectForKey:@"thumb"] objectForKey:@"link"]];
                 handler(YES);
+                [self receiveImageOfArticle:article ByUrl:[[receivedArticle objectForKey:@"thumb"] objectForKey:@"link"]];
                 [self receiveDetailsOfArticle:article];
             }
         }
@@ -162,7 +167,7 @@ static ATLDatabaseManager *shared = nil;
 
 - (void)receiveImageOfArticle:(ATLArticle *)article ByUrl:(NSString *)url
 {
-    NSString *stringForUrl = [url stringByReplacingOccurrencesOfString:@"%dx%d" withString:@"300x300"];
+    NSString *stringForUrl = [url stringByReplacingOccurrencesOfString:@"%dx%d" withString:@"300x200"];
     NSURL *imageUrl = [NSURL URLWithString:stringForUrl];
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:imageUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0];
     [NSURLConnection sendAsynchronousRequest:imageRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

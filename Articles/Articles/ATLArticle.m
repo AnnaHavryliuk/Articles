@@ -31,8 +31,11 @@
     newArticle.identifier = [data objectForKey:@"id"];
     newArticle.title = [data objectForKey:@"title"];
     NSTimeInterval timeInterval = [[data objectForKey:@"date"] doubleValue];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy";
+    newArticle.date = [formatter stringFromDate:date];
     newArticle.ranking =[data objectForKey:@"ranking"];
-    newArticle.date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     newArticle.subtitle = [data objectForKey:@"subtitle"];
     newArticle.category = category;
     NSError *error;

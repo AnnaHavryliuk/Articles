@@ -85,19 +85,21 @@
 - (void) displaySelectedArticle
 {
     self.articleTitle.text = self.articlesManager.selectedArticle.title;
-    NSDateFormatter *formatterOfDate = [[NSDateFormatter alloc] init];
-    formatterOfDate.dateFormat = @"dd.MM.yyyy";
-    NSString *date = [formatterOfDate stringFromDate:self.articlesManager.selectedArticle.date];
-    NSMutableString *text = [NSMutableString stringWithString:date];
+    NSMutableString *text = [NSMutableString stringWithString:self.articlesManager.selectedArticle.date];
     if(self.articlesManager.selectedArticle.author)
     {
         [text appendFormat:@" %@", self.articlesManager.selectedArticle.author];
     }
     self.articleDateAndAuthor.text = text;
-    self.articleImage.image = [UIImage imageWithData:self.articlesManager.selectedArticle.image];
+    if (self.articlesManager.selectedArticle.image.length)
+    {
+        self.articleImage.image = [UIImage imageWithData:self.articlesManager.selectedArticle.image];
+    } else
+    {
+        self.articleImage.image = [UIImage imageNamed:@"notfound.jpg"];
+    }
     self.articleSubtitle.text = self.articlesManager.selectedArticle.subtitle;
     [self.articleContent loadHTMLString:self.articlesManager.selectedArticle.content baseURL:nil];
-    
 }
 
 @end

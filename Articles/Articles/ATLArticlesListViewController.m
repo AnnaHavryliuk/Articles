@@ -39,9 +39,35 @@
         self.subcategoryName.text = self.articlesManager.selectedSubcategory.name;
         self.subcategoriesControl.numberOfPages = self.articlesManager.subcategories.count;
         [self.tableOfArticles reloadData];
+        if (!success)
+        {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+            {
+                NSString *articleDate = [(ATLArticle *)[self.filteredArticles objectAtIndex:0] date];
+                NSString *alertMessage = [NSString stringWithFormat:@"Data is valid for %@", articleDate];
+                [self displayNoInternetAlert:alertMessage];
+            } else
+            {
+                [self displayNoInternetAlert:@"Data source is empty"];
+                self.mainCategoriesControl.hidden = YES;
+            }
+        }
     }];
     [self.tableOfArticles setSeparatorInset:UIEdgeInsetsZero];
     [self.tableOfArticles setLayoutMargins:UIEdgeInsetsZero];
+}
+
+- (void)displayNoInternetAlert:(NSString *)alertMessage
+{
+    NSString *alertTitle = @"No internet connection";
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle
+                                                                             message:alertMessage
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleCancel
+                                                     handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - ATLReloadArticlesDataDelegate methods
@@ -64,7 +90,13 @@
     ATLArticle *article = [self.filteredArticles objectAtIndex:indexPath.row];
     cell.articleTitle.text = article.title;
     cell.articleSubtitle.text = article.subtitle;
-    cell.articleImage.image = [UIImage imageWithData:article.image];
+    if (article.image.length)
+    {
+        cell.articleImage.image = [UIImage imageWithData:article.image];
+    } else
+    {
+        cell.articleImage.image = [UIImage imageNamed:@"notfound.jpg"];
+    }
     [cell setSeparatorInset:UIEdgeInsetsZero];
     [cell setLayoutMargins:UIEdgeInsetsZero];
     return cell;

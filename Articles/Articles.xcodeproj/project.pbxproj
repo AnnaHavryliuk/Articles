@@ -11,6 +11,7 @@
 		841C006E1AB464E7009C3D86 /* ATLModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841C006C1AB464E7009C3D86 /* ATLModel.xcdatamodeld */; };
 		841C00711AB4AA01009C3D86 /* ATLArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C00701AB4AA01009C3D86 /* ATLArticle.m */; };
 		841C00741AB4AA02009C3D86 /* ATLArticleCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C00731AB4AA02009C3D86 /* ATLArticleCategory.m */; };
+		8428B5661ABA587400FF2D52 /* notfound.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8428B5651ABA587400FF2D52 /* notfound.jpg */; };
 		845AF4B61AB23D7400C34AFB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845AF4B41AB23D7400C34AFB /* LaunchScreen.xib */; };
 		845AF4B91AB23EB800C34AFB /* ATLArticleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF4B81AB23EB800C34AFB /* ATLArticleDetailsViewController.m */; };
 		845AF4C21AB2401900C34AFB /* ATLDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF4C11AB2401900C34AFB /* ATLDatabaseManager.m */; };
@@ -40,6 +41,7 @@
 		841C00701AB4AA01009C3D86 /* ATLArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLArticle.m; sourceTree = "<group>"; };
 		841C00721AB4AA02009C3D86 /* ATLArticleCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLArticleCategory.h; sourceTree = "<group>"; };
 		841C00731AB4AA02009C3D86 /* ATLArticleCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLArticleCategory.m; sourceTree = "<group>"; };
+		8428B5651ABA587400FF2D52 /* notfound.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = notfound.jpg; sourceTree = "<group>"; };
 		845AF4B51AB23D7400C34AFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		845AF4B71AB23EB800C34AFB /* ATLArticleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLArticleDetailsViewController.h; sourceTree = "<group>"; };
 		845AF4B81AB23EB800C34AFB /* ATLArticleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLArticleDetailsViewController.m; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				845AF4B41AB23D7400C34AFB /* LaunchScreen.xib */,
+				8428B5651ABA587400FF2D52 /* notfound.jpg */,
 				849005401AB1C6C0002C0E1E /* Info.plist */,
 				849005411AB1C6C0002C0E1E /* main.m */,
 			);
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8428B5661ABA587400FF2D52 /* notfound.jpg in Resources */,
 				8490054B1AB1C6C0002C0E1E /* Main.storyboard in Resources */,
 				845AF4B61AB23D7400C34AFB /* LaunchScreen.xib in Resources */,
 				8490054D1AB1C6C0002C0E1E /* Images.xcassets in Resources */,
